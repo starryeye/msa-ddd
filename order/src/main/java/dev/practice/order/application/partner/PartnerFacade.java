@@ -1,0 +1,28 @@
+package dev.practice.order.application.partner;
+
+import dev.practice.order.domain.notification.NotificationService;
+import dev.practice.order.domain.partner.PartnerCommand;
+import dev.practice.order.domain.partner.PartnerInfo;
+import dev.practice.order.domain.partner.PartnerService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class PartnerFacade {
+
+    private final PartnerService partnerService;
+    private final NotificationService notificationService;
+
+    public PartnerInfo registerPartner(PartnerCommand command) {
+        //1. command 를 이용해서 PartnerService.register
+        //2. email
+        // 위 두 로직은 각기 수행되어야한다.(transaction x)
+
+        var partnerInfo = partnerService.registerPartner(command);
+        notificationService.sendEmail(partnerInfo.getEmail(), "title", "description");
+        return partnerInfo;
+    }
+}
