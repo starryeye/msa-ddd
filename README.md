@@ -1,6 +1,6 @@
 # msa-ddd
 
-Skills
+## Skills
 - Java 11
 - Spring Boot
 - Spring Data JPA
@@ -8,8 +8,8 @@ Skills
 - Flyway
 - MSA, DDD
 
----
-Tools
+
+## Tools
 - IntelliJ IDEA Ultimate
 - DataGrip
 - Docker
