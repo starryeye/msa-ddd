@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Slf4j
 @Component
-public class CommonHttpRequestInterceptor extends HandlerInterceptorAdapter {
+public class CommonHttpRequestInterceptor implements HandlerInterceptor {
 
     public static final String HEADER_REQUEST_UUID_KEY = "x-request-id";
 
