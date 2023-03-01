@@ -1,6 +1,6 @@
 # msa-ddd
 
-skills
+Skills
 - Spring Boot
 - Spring Data JPA
 - Docker (MySQL)
