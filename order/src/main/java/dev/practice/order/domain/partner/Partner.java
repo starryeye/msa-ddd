@@ -39,9 +39,9 @@ public class Partner extends AbstractEntity {
     @Builder
     public Partner(String partnerName, String businessNo, String email) {
 
-        if(StringUtils.isEmpty(partnerName)) throw new RuntimeException("empty partnerName");
-        if(StringUtils.isEmpty(businessNo)) throw new RuntimeException("empty businessNo");
-        if(StringUtils.isEmpty(email)) throw new RuntimeException("empty email");
+        if(StringUtils.isBlank(partnerName)) throw new RuntimeException("empty partnerName");
+        if(StringUtils.isBlank(businessNo)) throw new RuntimeException("empty businessNo");
+        if(StringUtils.isBlank(email)) throw new RuntimeException("empty email");
 
         this.partnerToken = TokenGenerator.randomCharacterWithPrefix(PREFIX_PARTNER);
         this.partnerName = partnerName;
