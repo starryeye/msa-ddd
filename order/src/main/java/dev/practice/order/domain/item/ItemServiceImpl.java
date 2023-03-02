@@ -29,17 +29,40 @@ public class ItemServiceImpl implements ItemService{
         var item = itemStore.store(initItem);
 
         //3. itemOptionGroup + itemOption store
+        command.getItemOptionGroupRequestList().forEach(requestItemOptionGroup -> {
+            var initItemOptionGroup = ItemOptionGroup.builder()
+                    .item(item)
+                    .ordering(requestItemOptionGroup.getOrdering())
+                    .itemOptionGroupName(requestItemOptionGroup.getItemOptionGroupName())
+                    .build();
+
+            var itemOptionGroup = itemOptionGroupStore.store(initItemOptionGroup);
+
+            requestItemOptionGroup.getItemOptionRequestList().forEach(requestItemOption -> {
+                var initItemOption = ItemOption.builder()
+                        .itemOptionGroup(itemOptionGroup)
+                        .ordering(requestItemOption.getOrdering())
+                        .itemOptionName(requestItemOption.getItemOptionName())
+                        .itemOptionPrice(requestItemOption.getItemOptionPrice())
+                        .build();
+                itemOptionStore.store(initItemOption);
+            });
+        });
+
         //4. return itemToken
+        return item.getItemToken();
     }
 
     @Override
     public void changeOnSale(String itemToken) {
-
+        var item = itemReader.getItemBy(itemToken);
+        item.changeOnSales();
     }
 
     @Override
     public void changeEndOfSale(String itemToken) {
-
+        var item = itemReader.getItemBy(itemToken);
+        item.changeEndOfSales();
     }
 
     @Override

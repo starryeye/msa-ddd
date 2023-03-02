@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
+
 public class ItemCommand {
 
     @Getter
@@ -19,6 +21,41 @@ public class ItemCommand {
                     .partnerId(partnerId)
                     .itemName(itemName)
                     .itemPrice(itemPrice)
+                    .build();
+        }
+    }
+
+    @Getter
+    @Builder
+    @ToString
+    public static class RegisterItemOptionGroupRequest { // ex) 색상
+        private final Integer ordering;
+        private final String itemOptionGroupName;
+        private final List<RegisterItemOptionRequest> itemOptionRequestList; // ex) R, B, W
+
+        public ItemOptionGroup toEntity(Item item) {
+            return ItemOptionGroup.builder()
+                    .item(item)
+                    .ordering(ordering)
+                    .itemOptionGroupName(itemOptionGroupName)
+                    .build();
+        }
+    }
+
+    @Getter
+    @Builder
+    @ToString
+    public static class RegisterItemOptionRequest {
+        private final Integer ordering;
+        private final String itemOptionName;
+        private final Long itemOptionPrice;
+
+        public ItemOption toEntity(ItemOptionGroup itemOptionGroup) {
+            return ItemOption.builder()
+                    .itemOptionGroup(itemOptionGroup)
+                    .ordering(ordering)
+                    .itemOptionName(itemOptionName)
+                    .itemOptionPrice(itemOptionPrice)
                     .build();
         }
     }
