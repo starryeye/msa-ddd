@@ -1,5 +1,9 @@
 package dev.practice.order.domain.item;
 
+import dev.practice.order.domain.item.option.ItemOption;
+import dev.practice.order.domain.item.option.ItemOptionStore;
+import dev.practice.order.domain.item.optiongroup.ItemOptionGroup;
+import dev.practice.order.domain.item.optiongroup.ItemOptionGroupStore;
 import dev.practice.order.domain.partner.PartnerReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
