@@ -8,6 +8,7 @@ import dev.practice.order.domain.partner.PartnerReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -20,6 +21,7 @@ public class ItemServiceImpl implements ItemService{
     private final ItemOptionSeriesFactory itemOptionSeriesFactory;
 
     @Override
+    @Transactional
     public String registerItem(ItemCommand.RegisterItemRequest command, String partnerToken) {
 
         //1. get partnerId
@@ -39,19 +41,24 @@ public class ItemServiceImpl implements ItemService{
     }
 
     @Override
+    @Transactional
     public void changeOnSale(String itemToken) {
         var item = itemReader.getItemBy(itemToken);
         item.changeOnSales();
     }
 
     @Override
+    @Transactional
     public void changeEndOfSale(String itemToken) {
         var item = itemReader.getItemBy(itemToken);
         item.changeEndOfSales();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ItemInfo.Main retrieveItemInfo(String itemToken) {
-        return null;
+        var item = itemReader.getItemBy(itemToken);
+        var itemOptionGroupInfoList = itemReader.getItemOptionSeries(item);
+        return new ItemInfo.Main(item, itemOptionGroupInfoList);
     }
 }

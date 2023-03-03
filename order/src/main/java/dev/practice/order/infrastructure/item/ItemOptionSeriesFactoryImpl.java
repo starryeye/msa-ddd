@@ -24,6 +24,9 @@ public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory {
     private final ItemOptionGroupStore itemOptionGroupStore;
     private final ItemOptionStore itemOptionStore;
 
+    /**
+     * TODO: cascade 사용
+     */
     @Override
     public List<ItemOptionGroup> store(ItemCommand.RegisterItemRequest command, Item item) {
 
