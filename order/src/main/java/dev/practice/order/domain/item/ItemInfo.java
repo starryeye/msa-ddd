@@ -17,7 +17,7 @@ public class ItemInfo {
         private final String itemName;
         private final Long itemPrice;
         private final Item.Status status;
-        private final List<ItemOptionGroupInfo> itemOptionGroupList;
+        private final List<ItemOptionGroupInfo> itemOptionGroupInfoList;
     }
 
     @Getter
@@ -26,7 +26,7 @@ public class ItemInfo {
     public static class ItemOptionGroupInfo {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ItemOptionInfo> itemOptionList;
+        private final List<ItemOptionInfo> itemOptionInfoList;
     }
 
     @Getter
