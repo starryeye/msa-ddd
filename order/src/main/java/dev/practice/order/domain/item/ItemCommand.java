@@ -8,6 +8,9 @@ import lombok.ToString;
 
 import java.util.List;
 
+/**
+ * TODO: class 명 리팩토링
+ */
 public class ItemCommand {
 
     @Getter
