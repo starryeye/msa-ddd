@@ -17,22 +17,22 @@ public class ItemInfo {
         private final String itemName;
         private final Long itemPrice;
         private final Item.Status status;
-        private final List<ItemOptionGroup> itemOptionGroupList;
+        private final List<ItemOptionGroupInfo> itemOptionGroupList;
     }
 
     @Getter
     @Builder
     @ToString
-    public static class ItemOptionGroup {
+    public static class ItemOptionGroupInfo {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ItemOption> itemOptionList;
+        private final List<ItemOptionInfo> itemOptionList;
     }
 
     @Getter
     @Builder
     @ToString
-    public static class ItemOption {
+    public static class ItemOptionInfo {
         private final Integer ordering;
         private final String itemOptionName;
         private final Long itemOptionPrice;
