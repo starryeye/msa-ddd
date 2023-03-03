@@ -28,30 +28,31 @@ public class PartnerDto {
         @NotEmpty(message = "email 는 필수값입니다")
         private String email;
 
-        public PartnerCommand toCommand() {
-            return PartnerCommand.builder()
-                    .partnerName(partnerName)
-                    .businessNo(businessNo)
-                    .email(email)
-                    .build();
-        }
+//        public PartnerCommand toCommand() {
+//            return PartnerCommand.builder()
+//                    .partnerName(partnerName)
+//                    .businessNo(businessNo)
+//                    .email(email)
+//                    .build();
+//        }
     }
 
     @Getter
+    @Setter
     @ToString
     public static class RegisterResponse {
-        private final String partnerToken;
-        private final String partnerName;
-        private final String businessNo;
-        private final String email;
-        private final Partner.Status status;
+        private String partnerToken;
+        private String partnerName;
+        private String businessNo;
+        private String email;
+        private Partner.Status status;
 
-        public RegisterResponse(PartnerInfo partnerInfo) {
-            this.partnerToken = partnerInfo.getPartnerToken();
-            this.partnerName = partnerInfo.getPartnerName();
-            this.businessNo = partnerInfo.getBusinessNo();
-            this.email = partnerInfo.getEmail();
-            this.status = partnerInfo.getStatus();
-        }
+//        public RegisterResponse(PartnerInfo partnerInfo) {
+//            this.partnerToken = partnerInfo.getPartnerToken();
+//            this.partnerName = partnerInfo.getPartnerName();
+//            this.businessNo = partnerInfo.getBusinessNo();
+//            this.email = partnerInfo.getEmail();
+//            this.status = partnerInfo.getStatus();
+//        }
     }
 }

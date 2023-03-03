@@ -18,6 +18,7 @@ import javax.validation.Valid;
 public class PartnerApiController {
 
     private final PartnerFacade partnerFacade;
+    private final PartnerDtoMapper partnerDtoMapper;
 
     @PostMapping
     public CommonResponse registerPartner(@RequestBody @Valid PartnerDto.RegisterRequest request) {
@@ -25,11 +26,13 @@ public class PartnerApiController {
         //2. facade 호출해서 PartnerInfo 리턴받기
         //3. PartnerInfo 를 CommonResponse 로 변환해서 리턴하기
 
-        var command = request.toCommand();
+//        var command = request.toCommand();
+        var command = partnerDtoMapper.of(request);
 
         var partnerInfo = partnerFacade.registerPartner(command);
 
-        var response = new PartnerDto.RegisterResponse(partnerInfo);
+//        var response = new PartnerDto.RegisterResponse(partnerInfo);
+        var response = partnerDtoMapper.of(partnerInfo);
 
         return CommonResponse.success(response);
     }
