@@ -1,6 +1,7 @@
 package dev.practice.order.interfaces.item;
 
 import dev.practice.order.domain.item.ItemCommand;
+import dev.practice.order.domain.item.ItemInfo;
 import org.mapstruct.*;
 
 @Mapper(
@@ -10,14 +11,23 @@ import org.mapstruct.*;
 )
 public interface ItemDtoMapper {
 
-    //register
-    @Mappings({@Mapping(source = "itemOptionGroupRequestDtoForRegisterList", target = "itemOptionGroupRequestList")})
-    ItemCommand.RegisterItemRequest of(ItemDto.ItemRequestDtoForRegister requestDto);
+    // register
+    @Mappings({@Mapping(source = "request.itemOptionGroupList", target = "itemOptionGroupRequestList")})
+    ItemCommand.RegisterItemRequest of(ItemDto.RegisterItemRequest request);
 
-    @Mappings({@Mapping(source = "itemOptionRequestDtoForRegisterList", target = "itemOptionRequestList")})
-    ItemCommand.RegisterItemOptionGroupRequest of(ItemDto.ItemOptionGroupRequestDtoForRegister requestDto);
+    @Mappings({@Mapping(source = "itemOptionList", target = "itemOptionRequestList")})
+    ItemCommand.RegisterItemOptionGroupRequest of(ItemDto.RegisterItemOptionGroupRequest request);
 
-    ItemCommand.RegisterItemOptionRequest of(ItemDto.ItemOptionRequestDtoForRegister requestDto);
+    ItemCommand.RegisterItemOptionRequest of(ItemDto.RegisterItemOptionRequest request);
 
-    ItemDto.ItemTokenResponseDtoForRegister of(String itemToken);
+    ItemDto.RegisterResponse of(String itemToken);
+
+    // retrieve
+    @Mappings({@Mapping(source = "itemOptionGroupInfoList", target = "itemOptionGroupList")})
+    ItemDto.Main of(ItemInfo.Main main);
+
+    @Mappings({@Mapping(source = "itemOptionInfoList", target = "itemOptionList")})
+    ItemDto.ItemOptionGroupInfo of(ItemInfo.ItemOptionGroupInfo itemOptionGroup);
+
+    ItemDto.ItemOptionInfo of(ItemInfo.ItemOptionInfo itemOption);
 }
