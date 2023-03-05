@@ -1,6 +1,5 @@
 package dev.practice.order.domain.order;
 
-import dev.practice.order.domain.item.ItemReader;
 import dev.practice.order.domain.order.payment.PaymentProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +15,7 @@ public class OrderServiceImpl implements OrderService{
     private final OrderReader orderReader;
     private final OrderItemSeriesFactory orderItemSeriesFactory;
     private final PaymentProcessor paymentProcessor;
+    private final OrderInfoMapper orderInfoMapper;
 
     @Override
     @Transactional
@@ -40,4 +40,16 @@ public class OrderServiceImpl implements OrderService{
 
         order.orderComplete();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public OrderInfo.Main retrieveOrder(String orderToken) {
+        var order = orderReader.getOrder(orderToken);
+        var orderItemList = order.getOrderItemList();
+
+        // TODO: 아래 로직에서 1:N 문제 발생, fetch join 으로 성능 개선 필요
+        return orderInfoMapper.of(order, orderItemList);
+    }
+
+
 }
