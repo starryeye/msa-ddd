@@ -1,4 +1,4 @@
-package dev.practice.order.interfaces.order;
+package dev.practice.order.infrastructure.order;
 
 import dev.practice.order.domain.order.Order;
 import dev.practice.order.domain.order.OrderStore;

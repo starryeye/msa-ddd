@@ -1,4 +1,4 @@
-package dev.practice.order.interfaces.order;
+package dev.practice.order.infrastructure.order;
 
 import dev.practice.order.domain.order.item.OrderItemOption;
 import org.springframework.data.jpa.repository.JpaRepository;
