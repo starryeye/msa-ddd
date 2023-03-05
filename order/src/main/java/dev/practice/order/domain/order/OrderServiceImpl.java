@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService{
         var order = orderReader.getOrder(orderToken);
 
         //결제 처리, 외부 PG 통신
-        paymentProcessor.pay(paymentRequest);
+        paymentProcessor.pay(order, paymentRequest);
 
         order.orderComplete();
     }
