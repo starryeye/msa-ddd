@@ -12,11 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderServiceImpl implements OrderService{
     
     private final OrderStore orderStore;
-    private final ItemReader itemReader;
+    private final OrderItemSeriesFactory orderItemSeriesFactory;
 
-    /**
-     * TODO: cascade 적용
-     */
     @Override
     @Transactional
     public String registerOrder(OrderCommand.RegisterOrder requestOrder) {
@@ -24,22 +21,7 @@ public class OrderServiceImpl implements OrderService{
         //root 저장
         Order order = orderStore.store(requestOrder.toEntity());
 
-        //Series 저장
-        requestOrder.getOrderItemList().forEach(orderItemRequest -> {
-            var item = itemReader.getItemBy(orderItemRequest.getItemToken());
-            var initOrderItem = orderItemRequest.toEntity(order, item);
-            var orderItem = orderStore.store(initOrderItem);
-
-            orderItemRequest.getOrderItemOptionGroupList().forEach(orderItemOptionGroupRequest -> {
-                var initOrderItemOptionGroup = orderItemOptionGroupRequest.toEntity(orderItem);
-                var orderItemOptionGroup = orderStore.store(initOrderItemOptionGroup);
-
-                orderItemOptionGroupRequest.getOrderItemOptionList().forEach(orderItemOptionRequest -> {
-                    var initOrderItemOption = orderItemOptionRequest.toEntity(orderItemOptionGroup);
-                    orderStore.store(initOrderItemOption);
-                });
-            });
-        });
+        orderItemSeriesFactory.store(order, requestOrder);
 
         return order.getOrderToken();
     }
