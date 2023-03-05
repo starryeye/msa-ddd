@@ -1,6 +1,7 @@
 package dev.practice.order.domain.order;
 
 import dev.practice.order.domain.item.ItemReader;
+import dev.practice.order.domain.order.payment.PaymentProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderServiceImpl implements OrderService{
     
     private final OrderStore orderStore;
+    private final OrderReader orderReader;
     private final OrderItemSeriesFactory orderItemSeriesFactory;
+    private final PaymentProcessor paymentProcessor;
 
     @Override
     @Transactional
@@ -24,5 +27,17 @@ public class OrderServiceImpl implements OrderService{
         orderItemSeriesFactory.store(order, requestOrder);
 
         return order.getOrderToken();
+    }
+
+    @Override
+    @Transactional
+    public void paymentOrder(OrderCommand.PaymentRequest paymentRequest) {
+        var orderToken = paymentRequest.getOrderToken();
+        var order = orderReader.getOrder(orderToken);
+
+        //결제 처리, 외부 PG 통신
+        paymentProcessor.pay(paymentRequest);
+
+        order.orderComplete();
     }
 }
