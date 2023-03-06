@@ -34,7 +34,7 @@ public class CommonControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
-    public CommonResponse onException(Exception e) {
+    public CommonResponse<?> onException(Exception e) {
         String eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY);
         log.error("eventId = {} ", eventId, e);
         return CommonResponse.fail(ErrorCode.COMMON_SYSTEM_ERROR);
@@ -50,7 +50,7 @@ public class CommonControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = BaseException.class)
-    public CommonResponse onBaseException(BaseException e) {
+    public CommonResponse<?> onBaseException(BaseException e) {
         String eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY);
         if (SPECIFIC_ALERT_TARGET_ERROR_CODE_LIST.contains(e.getErrorCode())) {
             log.error("[BaseException] eventId = {}, cause = {}, errorMsg = {}", eventId, NestedExceptionUtils.getMostSpecificCause(e), NestedExceptionUtils.getMostSpecificCause(e).getMessage());
@@ -70,7 +70,7 @@ public class CommonControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = {ClientAbortException.class})
-    public CommonResponse skipException(Exception e) {
+    public CommonResponse<?> skipException(Exception e) {
         String eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY);
         log.warn("[skipException] eventId = {}, cause = {}, errorMsg = {}", eventId, NestedExceptionUtils.getMostSpecificCause(e), NestedExceptionUtils.getMostSpecificCause(e).getMessage());
         return CommonResponse.fail(ErrorCode.COMMON_SYSTEM_ERROR);
@@ -86,7 +86,7 @@ public class CommonControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public CommonResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public CommonResponse<?> methodArgumentNotValidException(MethodArgumentNotValidException e) {
         String eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY);
         log.warn("[BaseException] eventId = {}, errorMsg = {}", eventId, NestedExceptionUtils.getMostSpecificCause(e).getMessage());
         BindingResult bindingResult = e.getBindingResult();
