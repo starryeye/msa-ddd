@@ -19,6 +19,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "orders")
 public class Order extends AbstractEntity {
 
     private static final String ORDER_PREFIX ="ord_";
