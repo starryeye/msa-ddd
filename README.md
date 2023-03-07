@@ -1,12 +1,17 @@
 # msa-ddd
 
-## Skills
+## Dependency
 - Java 11
 - Spring Boot
 - Spring Data JPA
+- Validation
 - Docker (MySQL)
 - Flyway
 - MSA, DDD
+- AWS SQS
+- Retrofit
+- MapStruct
+- Guava
 
 
 ## Tools
