@@ -37,7 +37,7 @@ public class GiftOrderServiceImpl implements GiftOrderService{
         //주문 결제 완료
         order.orderComplete();
 
-        //
+        //주문 결제 완료 메시징
         giftMessageChannelSender.paymentComplete(new GiftPaymentCompleteMessage(order.getOrderToken()));
     }
 }
