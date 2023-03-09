@@ -17,7 +17,7 @@ public class GiftServiceImpl implements GiftService{
     private final GiftToOrderMapper giftToOrderMapper;
 
     /**
-     * 선물 토큰으로 선물 주문 정보를 얻는다.
+     * 선물 토큰으로 선물 정보를 얻는다.
      * 선물 수령자의 수락 페이지 로딩 시 사용.
      */
     @Override
