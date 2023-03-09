@@ -35,4 +35,3 @@ create
 
 create
     index gifts_idx04 on gifts (order_token);
-Footer

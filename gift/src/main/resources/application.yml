@@ -12,14 +12,14 @@ spring:
       ddl-auto: none
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/gift?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:4406/gift?serverTimezone=UTC&characterEncoding=UTF-8
     username: gift-svc
     password: gift-pass
   flyway:
     user: gift-svc
     password: gift-pass
     schemas: gift
-    url: jdbc:mysql://localhost:3306/gift?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:4406/gift?serverTimezone=UTC&characterEncoding=UTF-8
     enabled: true
 
 logging:

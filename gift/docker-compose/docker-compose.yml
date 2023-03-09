@@ -3,7 +3,7 @@ services:
   gift-db:
     image: mysql:8.0
     ports:
-      - "3306:3306"
+      - "4406:3306"
     environment:
       - MYSQL_DATABASE=gift
       - MYSQL_ROOT_PASSWORD=root-pass
