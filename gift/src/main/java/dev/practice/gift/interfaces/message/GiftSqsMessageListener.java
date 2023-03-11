@@ -14,7 +14,7 @@ public class GiftSqsMessageListener {
 
     private final GiftFacade giftFacade;
 
-    @SqsListener(value = "order-payComplete-live.fifo", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+    @SqsListener(value = "msa-ddd-order-payComplete-live.fifo", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
     public void readMessage(GiftPaymentCompleteMessage message) {
         var orderToken = message.getOrderToken();
         log.info("[GiftSqsMessageListener.readMessage] orderToken={}", orderToken);

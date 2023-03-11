@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class GiftMessageAwsSqsSender implements GiftMessageChannelSender {
 
-    private final String SQS_QUEUE_NAME = "order-payComplete-live.fifo";
+    private final String SQS_QUEUE_NAME = "msa-ddd-order-payComplete-live.fifo";
     private final QueueMessagingTemplate queueMessagingTemplate;
 
     @Override
