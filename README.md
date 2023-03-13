@@ -13,8 +13,11 @@
 - MapStruct
 - Guava
 
-
 ## Tools
 - IntelliJ IDEA Ultimate
 - DataGrip
 - Docker
+
+## 도메인
+- Gift
+- Order, Item
