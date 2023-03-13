@@ -18,6 +18,6 @@
 - DataGrip
 - Docker
 
-## 도메인
+## Domain
 - Gift
 - Order, Item
