@@ -9,7 +9,8 @@
 - Spring Data JPA
 - Validation
 - lombok
-- Docker (MySQL)
+- Docker
+- MySQL
 - Flyway
 - AWS SQS
 - Retrofit
