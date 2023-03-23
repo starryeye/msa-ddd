@@ -28,6 +28,12 @@
 - MSA, DDD
 - Rest Client, Message Broker
 
-## Domain
+## Service
 - Gift
-- Order, Item
+- Order
+
+## Aggregate Root
+- Gift
+- Order
+- Partner
+- Item
