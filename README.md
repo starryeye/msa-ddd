@@ -24,8 +24,9 @@
 - AWS
 
 ## Architectures
+- MicroService Architecture
 - Clean Architecture
-- MSA, DDD
+- Domain Driven Design
 - Rest Client, Message Broker
 
 ## Service
