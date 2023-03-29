@@ -39,6 +39,6 @@
 - Partner
 - Item
 
-## 비고
+## Note
 - Clean Architecture를 적용하여 Infrastructure layer가 Domain layer를 의존하도록 하였으나,  
 개발 편의를 위하여 Domain layer가 ORM(JPA) 기술을 의존함
